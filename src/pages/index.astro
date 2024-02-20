@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Table from '../components/Table.astro';
+import Formularioo from '../components/Formularioo.astro';
+import FormularioEditar from '../components/FormularioEditar.astro';
+---
+
+<Layout title="Welcome to Astro.">
+	<main>
+
+		<Table/>
+
+		<div class="flex px-8">
+			<div class="flex">
+				<Formularioo/>
+			</div>
+
+			<div class="flex px-6 mx-10 ">
+				<FormularioEditar/>
+			</div>
+			
+		</div>
+		
+		
+	</main>
+</Layout>
+
+<style>
+
+</style>

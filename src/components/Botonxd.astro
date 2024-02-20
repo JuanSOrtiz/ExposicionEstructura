@@ -1,0 +1,35 @@
+---
+const { id } = Astro.props;
+console.log(id)
+---
+
+<button class="alert">Delete</button>
+
+<script define:vars={{ id }}>
+  function eliminarRegistro() {
+    // Realiza una solicitud HTTP DELETE al backend para eliminar el registro
+    try {
+      fetch(`http://localhost:3000/champions/${id}`, {
+        method: "DELETE",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+          // Si es necesario, puedes agregar encabezados de autenticación u otros encabezados requeridos por tu backend
+        },
+      })
+      
+      window.location.reload()
+    } catch (error) {
+        console.log(error)
+    }
+  }
+  // Encuentra todos los botones con la clase `alert` en la página.
+  const buttons = document.querySelectorAll("button.alert");
+
+  // Maneja los clics en cada botón.
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      eliminarRegistro(id);
+    });
+  });
+</script>

@@ -1,0 +1,68 @@
+---
+
+---
+<div >
+    <form class="rounded-md ">
+      <label class="font-bold">
+        ID:
+        <input type="number" name="username" id="id" class="px-5 rounded-md shadow-md block font-normal"/>
+      </label>
+      <label class="font-bold">
+        Champion:
+        <input type="text" name="username" id="name2" class="px-5 rounded-md shadow-md block font-normal"/>
+      </label>
+      <label class="font-bold">
+        Role:
+        <input type="text" name="email" id="role2"class="px-5 rounded-md shadow-md block font-normal" />
+      </label>
+      <label class="font-bold">
+        Release Date:
+        <input type="date" name="password" id="release2" class="px-5 rounded-md shadow-md block font-normal"/>
+      </label>
+      <label class="font-bold">
+        Description:
+        <input type="text" name="password" id="description2" class="px-5 rounded-md shadow-md block font-normal"/>
+      </label>
+    
+      
+      
+    </form>
+    <button id="editform" class="font-bold rounded-md bg-indigo-400 hover:bg-indigo-700 w-full">Edit</button>
+</div>
+
+
+
+<script>
+document.getElementById("editform").addEventListener("click", editar);
+
+function editar() {
+  const id = (document.getElementById("id") as HTMLInputElement).value;
+  const name = (document.getElementById("name2") as HTMLInputElement).value;
+  const role = (document.getElementById("role2") as HTMLInputElement).value;
+  const release = (document.getElementById("release2") as HTMLInputElement).value;
+  const description = (document.getElementById("description2") as HTMLInputElement).value;
+
+
+
+  let data = {"name": name, "role": role, "releaseDate": release, "description": description };
+
+  try {
+      fetch(`http://localhost:3000/champions/${id}`, {
+        method: "PATCH",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+          // Si es necesario, puedes agregar encabezados de autenticación u otros encabezados requeridos por tu backend
+        },
+        body:JSON.stringify(data)
+      })
+      
+      window.location.reload()
+    } catch (error) {
+        console.log(error)
+    }
+}
+  
+
+
+</script>

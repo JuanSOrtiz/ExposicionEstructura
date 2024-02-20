@@ -1,0 +1,54 @@
+---
+
+---
+
+<form>
+  <label class="font-bold">
+    Champion:
+    <input type="text" name="username" id="name" class="px-5 rounded-md shadow-md block font-normal"/>
+  </label>
+  <label class="font-bold">
+    Role:
+    <input type="email" name="email" id="role" class="px-5 rounded-md shadow-md block font-normal" />
+  </label>
+  <label class="font-bold">
+    Release Date:
+    <input type="date" name="password" id="release"  class="px-5 rounded-md shadow-md block font-normal"/>
+  </label>
+  <label class="font-bold">
+    Description:
+    <input type="text" name="password" id="description"  class="px-5 rounded-md shadow-md block font-normal"/>
+  </label>
+  <button id="sendform" class="font-bold rounded-md bg-indigo-400 hover:bg-indigo-700 w-full">Submit</button>
+</form>
+
+
+<script>
+document.getElementById("sendform").addEventListener("click", enviar);
+
+function enviar() {
+  let name = (document.getElementById("name") as HTMLInputElement).value;
+  let role = (document.getElementById("role") as HTMLInputElement).value;
+  let release = (document.getElementById("release") as HTMLInputElement).value;
+  let description = (document.getElementById("description") as HTMLInputElement).value;
+
+  let data = {"name": name, "role": role, "releaseDate": release, "description": description };
+  
+
+  try {
+      fetch(`http://localhost:3000/champions`, {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+          // Si es necesario, puedes agregar encabezados de autenticación u otros encabezados requeridos por tu backend
+        },
+        body:JSON.stringify(data)
+      })
+      
+      window.location.reload()
+    } catch (error) {
+        console.log(error)
+    }
+}
+</script>

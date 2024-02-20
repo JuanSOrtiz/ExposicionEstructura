@@ -1,0 +1,48 @@
+---
+import Botonxd from "./Botonxd.astro"
+
+
+
+const response = await fetch("http://localhost:3000/champions")
+const data = await response.json()
+
+
+
+
+---
+
+
+
+<div class="p-4 flex text-gray-900 bg-gray-200">
+    <h1 class="text-3xl">Champions</h1>
+  </div>
+  <div class="px-3 py-4 flex justify-center">
+    <table class="w-full text-md bg-white shadow-md rounded mb-4">
+      <tbody>
+        <tr class="border-b">
+          <th class="text-left p-3 px-5">Id</th>
+          <th class="text-left p-3 px-5">Name</th>
+          <th class="text-left p-3 px-5">Role</th>
+          <th class="text-left p-3 px-5">Release Date</th>
+          <th class="text-left p-3 px-5">Description</th>
+          <th class="text-left p-3 px-5">Action</th>
+        </tr>
+        {data.map((champion) => (
+            <tr class="border-b hover:bg-orange-100 bg-gray-100">
+              <td class="p-3 px-5">{champion.id}</td>
+              <td class="p-3 px-5">{champion.name}</td>
+              <td class="p-3 px-5">{champion.role}</td>
+              <td class="p-3 px-5">{champion.releaseDate}</td>
+              <td class="p-3 px-5">{champion.description}</td>
+              <td class="p-3 px-5">
+                <Botonxd id={champion.id} />
+              </td>
+            </tr>
+            
+          ))}
+        
+      </tbody>
+    </table>
+
+</div>  
+
